@@ -31,6 +31,7 @@ public class AccountManager {
 
     // 계좌만들기
     void makeAccount() {
+        System.out.println("학원에서 작업완료");
         System.out.println("**신규계좌개설**");
         String accNo, name, creditRating;
         int balance, interest;

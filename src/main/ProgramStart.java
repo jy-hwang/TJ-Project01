@@ -10,7 +10,7 @@ import shopping.ShopMain;
 public class ProgramStart {
     static void showMenu() {
         System.out.println("========================== 전 체 메 뉴 ================================");
-        System.out.printf("1. 계좌관리 \t 2. 주소록관리 \t 3. 상품관리 \t 4. 게임\t5.종료 %n");
+        System.out.printf("1. 계좌관리 \t 2. 주소록관리 \t 3. 상품관리 \t 4. 게임\t5 .종료 %n");
         System.out.println("=======================================================================");
     }
 
