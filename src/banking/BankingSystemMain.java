@@ -10,6 +10,8 @@ public class BankingSystemMain {
 
     public void startBankingSystem() {
 
+        System.out.println("pull 없이 작업 진행함");
+        
         AccountManager am = new AccountManager();
         AutoSaver as = new AutoSaver(am);
         
