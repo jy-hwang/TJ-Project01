@@ -1,0 +1,107 @@
+package banking;
+
+import java.io.Serializable;
+import java.util.Objects;
+import commonUtil.CommonUtil;
+
+abstract public class Account implements Serializable {
+
+    // 계좌정보를 표현한 부모 클래스
+
+    // 멤버변수
+    private String accountNo;
+    private String name;
+    private int balance;
+
+    // 생성자
+    public Account(String accountNo, String name, int balance) {
+        this.accountNo = accountNo;
+        this.name = name;
+        this.balance = balance;
+    }
+
+    // getter / setter
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBalance(int tempNum, int money) {
+        // this.balance = balance;
+        /*
+        if(tempNum == 1){
+            this.balance += money;
+        }else{
+            this.balance -= money;
+        }
+        */
+
+
+        if (tempNum == ICustomDefine.DEPOSIT) {
+            if (money <= 0) {
+                System.out.println("음수 또는 0원은 입금할 수 없습니다.");
+            } else {
+                this.balance += money;
+            }
+        } else if (tempNum == ICustomDefine.WITHDRAW) {
+            if (money < 0) {
+                System.out.println("음수는 출금할 수 없습니다.");
+            } else if (money > balance) {
+                String allWithdraw = CommonUtil.scanValue("잔고가 부족합니다. 금액전체를 출금할까요?(Y/N)");
+                if ("Y".equalsIgnoreCase(allWithdraw)) {
+                    System.out.println(this.balance + "원 출금합니다.");
+                    this.balance = 0;
+                }
+            } else {
+                System.out.println(money + "원 출금합니다.");
+                this.balance -= money;
+            }
+        }
+    }
+
+    void showAccountInfo() {
+        System.out.println("=============================");
+        System.out.printf("계좌번호 : %s  \t이름 : %s  \t잔액 : %d\t", accountNo, name, balance);
+    }
+
+
+    // 멤버메서드
+    @Override
+    public String toString() {
+        return "Account [accountNo=" + accountNo + ", name=" + name + ", balance=" + balance + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        // int returnCode = Objects.hash(this.heroName, this.name, this.weapon);
+        int returnCode1 = Objects.hash(this.getAccountNo());
+        // System.out.println("hashCode() : "+returnCode1);
+        return returnCode1;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        Account ac = (Account) obj;
+        if (ac.getAccountNo().equals(this.getAccountNo())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
