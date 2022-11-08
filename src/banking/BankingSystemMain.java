@@ -10,7 +10,9 @@ public class BankingSystemMain {
 
     public void startBankingSystem() {
 
+        System.out.println("학원에서 작업완료.");
         System.out.println("pull 없이 작업 진행함");
+        System.out.println("클론 후 작업 01");
         
         AccountManager am = new AccountManager();
         AutoSaver as = new AutoSaver(am);
@@ -21,7 +23,6 @@ public class BankingSystemMain {
         am.loadAccountInfo();
         boolean isTrue = true;
         while (isTrue) {
-        	System.out.println("클론 후 작업 01");
             am.showMenu();
             try {
 
