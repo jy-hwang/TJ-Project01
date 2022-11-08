@@ -19,6 +19,7 @@ public class BankingSystemMain {
         am.loadAccountInfo();
         boolean isTrue = true;
         while (isTrue) {
+        	System.out.println("클론 후 작업 01");
             am.showMenu();
             try {
 
