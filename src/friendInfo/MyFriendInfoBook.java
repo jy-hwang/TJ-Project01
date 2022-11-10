@@ -2,20 +2,20 @@ package friendInfo;
 
 import java.util.Scanner;
 import commonUtil.CommonUtil;
+import main.ICustomDefine;
 
 public class MyFriendInfoBook {
-    /*
-     * 매개변수도 없고 반환타입도 없는 메서드
-     */
+
     public static void menuShow() {
         System.out.println("========================주 소 록 관 리 ================================");
         System.out.printf("1. 고딩친구 입력 \t 2. 대학친구 입력 \t\t 3. 전체정보 출력%n");
-        System.out.printf("4. 간략정보 출력 \t 5. 친구검색 \t 6. 주소록삭제 \t 7. 상위메뉴로%n");
+        System.out.printf("4. 간략정보 출력 \t 5. 친구검색 \t 6.정보수정 \t 7. 주소록삭제%n");
+        System.out.printf("8. 상위메뉴로 %n");
         System.out.println("=======================================================================");
     }
 
-   
-   public void freindInfoStart(){
+
+    public void freindInfoStart() {
         Scanner scan = new Scanner(System.in);
 
         FriendInfoHandler handler = new FriendInfoHandler();
@@ -27,29 +27,38 @@ public class MyFriendInfoBook {
             menuShow();
             int choice = CommonUtil.scanInt("원하는 메뉴");
             switch (choice) {
-                case 1:
-                case 2:
+                // 친구정보 입력
+                case ICustomDefine.ADD_HIGH_FRIEND:
+                case ICustomDefine.ADD_UNIV_FRIEND:
                     handler.addFriend(choice);
                     break;
-                case 3:
+                // 전체정보 출력
+                case ICustomDefine.SHOW_ALL_INFO:
                     handler.showAllData();
                     break;
-                case 4:
+                // 간략정보출력
+                case ICustomDefine.SHOW_SIMPLE_INFO:
                     handler.showSimpleData();
                     break;
-                case 5:
+                // 친구검색
+                case ICustomDefine.SEARCH_FRIEND:
                     handler.searchInfo();
                     break;
-                case 6:
+                    // 정보수정
+                case ICustomDefine.MODIFY_INFO:
+                    handler.modifyInfo();
+                    break;
+                    //친구정보삭제
+                case ICustomDefine.DELETE_INFO:
                     handler.deleteInfo();
                     break;
 
-                case 7:
-                    System.out.println("프로그램종료");
+                case ICustomDefine.TO_THE_TOP_MENU:
+                    System.out.println("상위메뉴로");
                     isTrue = false;
                     handler.saveFriendInfo();
                     break;
-//                    System.exit(0);
+                // System.exit(0);
                 default:
                     System.out.println("메뉴선택이 잘못되었습니다.");
                     break;

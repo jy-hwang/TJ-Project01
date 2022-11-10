@@ -4,21 +4,18 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import commonUtil.CommonUtil;
 import game.threeByThree.ThreeByThreeGameMain;
+import main.ICustomDefine;
 import shopping.ShopMain;
 
 public class BankingSystemMain {
 
     public void startBankingSystem() {
 
-        System.out.println("학원에서 작업완료.");
-        System.out.println("pull 없이 작업 진행함");
-        System.out.println("클론 후 작업 01");
-        
         AccountManager am = new AccountManager();
         AutoSaver as = new AutoSaver(am);
-        
+
         ShopMain sm = new ShopMain();
-        
+
         Scanner scanner = new Scanner(System.in);
         am.loadAccountInfo();
         boolean isTrue = true;
@@ -28,7 +25,7 @@ public class BankingSystemMain {
 
                 int temp = CommonUtil.scanInt("원하는 메뉴");
 
-                if (temp >= ICustomDefine.MAKE_ACCOUNT || temp <= ICustomDefine.EXIT) {
+                if (temp >= ICustomDefine.MAKE_ACCOUNT || temp <= ICustomDefine.TO_THE_TOP_MENU) {
                     switch (temp) {
                         case ICustomDefine.MAKE_ACCOUNT:
                             am.makeAccount();
@@ -51,15 +48,13 @@ public class BankingSystemMain {
                         case ICustomDefine.TRANSFER:
                             am.transfer();
                             break;
-                        case ICustomDefine.EXIT:
+                        case ICustomDefine.TO_THE_TOP_MENU:
                             System.out.println("프로그램을 종료합니다.");
                             am.saveAccountInfo();
-                            //scanner.close();
-                            //System.exit(0);
                             isTrue = false;
                             break;
-                        // default:
-                        // System.out.println("잘못된입력입니다.");
+                        default:
+                            System.out.println("메뉴를 다시 확인 해주세요.");
                     }// end of switch
                 } else {
                     MenuSelectException ex = new MenuSelectException();
@@ -75,10 +70,5 @@ public class BankingSystemMain {
                 scanner.nextLine();
             }
         } // end of while
-
-
     }
-
-
-    
 }// end of class

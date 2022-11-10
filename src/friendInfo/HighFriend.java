@@ -5,7 +5,15 @@ package friendInfo;
  */
 public class HighFriend extends Friend {
     // 자식에서 확장한 멤버변수 : 별명
-    String nickname;
+    private String nickname;
+    
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     // 인수생성자
     public HighFriend(String name, String phone, String addr, String nickname) {
@@ -21,13 +29,13 @@ public class HighFriend extends Friend {
     public void showAllData() {
         System.out.println("===고딩친구(전체정보)===");
         super.showAllData();
-        System.out.printf("별명 : %s%n",nickname);
+        System.out.printf("별명 : %s%n",this.nickname);
     }
 
     @Override
     public void showBasicInfo() {
         System.out.println("===고딩친구(간단정보)===");
-        System.out.printf("별명 : %s \t 전화번호 : %s%n",nickname,phone);
+        System.out.printf("별명 : %s \t 전화번호 : %s%n",this.nickname,super.getPhone());
         System.out.println("==========================");
     }
 

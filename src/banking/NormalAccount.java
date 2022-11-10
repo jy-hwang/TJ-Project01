@@ -1,6 +1,6 @@
 package banking;
 
-import java.util.Objects;
+import main.ICustomDefine;
 
 public class NormalAccount extends Account{
 
@@ -26,7 +26,6 @@ public class NormalAccount extends Account{
     void showAccountInfo() {
      super.showAccountInfo();
      System.out.printf(" 기본이자 : %d%n",this.interest);
-     System.out.println("=============================");
     }
 
     @Override

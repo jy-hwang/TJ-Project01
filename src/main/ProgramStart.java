@@ -10,7 +10,7 @@ import shopping.ShopMain;
 public class ProgramStart {
     static void showMenu() {
         System.out.println("========================== 전 체 메 뉴 ================================");
-        System.out.printf("1. 계좌관리 \t 2. 주소록관리 \t 3. 상품관리 \t 4. 게임\t5 .종료 %n");
+        System.out.printf("1. 계좌관리 \t 2. 주소록관리 \t 3. 게임 \t 4. 상품관리 \t 5 .종료 %n");
         System.out.println("=======================================================================");
     }
 
@@ -21,50 +21,53 @@ public class ProgramStart {
         ThreeByThreeGameMain tbtgm = new ThreeByThreeGameMain();
         QuUpDownGame_jy upndown = new QuUpDownGame_jy();
         ShopMain shop = new ShopMain();
-        
-        
+
+
         boolean isTrue = true;
-        while(isTrue){
+        while (isTrue) {
             showMenu();
             int menuTempNum = CommonUtil.scanInt("원하는 메뉴");
-            
-            switch(menuTempNum){
-                
-                case 1:
+
+            switch (menuTempNum) {
+
+                case ICustomDefine.BANKING_MANAGE:
                     bsm.startBankingSystem();
                     break;
-                case 2:
+                case ICustomDefine.FRIEND_INFO_MANAGE:
                     mfib.freindInfoStart();
                     break;
-                case 3:
-                    shop.shopMain();
-                    break;
-                case 4:
+                case ICustomDefine.GAME:
                     System.out.println("=========================게 임 ================================");
-                    int gameTempNum = CommonUtil.scanInt("1. UpAndDown게임 \t 2. 3x3게임 \t 3. 돌아가기");
-                    switch(gameTempNum){
-                        case 1:
+                    int gameTempNum = CommonUtil.scanInt("1. UpAndDown게임 \t 2. 3x3게임 \t 8. 돌아가기");
+                    switch (gameTempNum) {
+                        case ICustomDefine.UPANDDOWN:
                             upndown.upDownGame();
                             break;
-                        case 2:
+                        case ICustomDefine.THREEBYTHREE:
                             tbtgm.gameStart();
                             break;
-                        case 3 : 
+                        case ICustomDefine.TO_THE_TOP_MENU:
                             System.out.println("상위메뉴로 돌아갑니다.");
                             break;
-                        default :
+                        default:
                             System.out.println("잘못된 입력입니다.");
                             break;
                     }
                     break;
-                case 5:
+                case ICustomDefine.SHOP_MANAGE:
+                    shop.shopMain();
+                    break;
+
+                case ICustomDefine.EXIT:
                     System.out.println("프로그램을 종료합니다.");
                     isTrue = false;
                     break;
-                    //System.exit(0);
+                // System.exit(0);
+                /*
                 default:
-                    System.out.println("잘못된입력입니다.");
-                    break;
+                System.out.println("잘못된입력입니다.");
+                break;
+                */
             }
         }
     }

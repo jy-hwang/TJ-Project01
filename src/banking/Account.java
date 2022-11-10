@@ -3,6 +3,7 @@ package banking;
 import java.io.Serializable;
 import java.util.Objects;
 import commonUtil.CommonUtil;
+import main.ICustomDefine;
 
 abstract public class Account implements Serializable {
 
@@ -42,45 +43,29 @@ abstract public class Account implements Serializable {
     }
 
     public void setBalance(int tempNum, int money) {
-        // this.balance = balance;
-        /*
-        if(tempNum == 1){
-            this.balance += money;
-        }else{
-            this.balance -= money;
-        }
-        */
-
-
         if (tempNum == ICustomDefine.DEPOSIT) {
-            if (money <= 0) {
-                System.out.println("음수 또는 0원은 입금할 수 없습니다.");
-            } else {
-                this.balance += money;
-            }
+            System.out.print(money + "원 입금합니다.");
+            this.balance += money;
         } else if (tempNum == ICustomDefine.WITHDRAW) {
-            if (money < 0) {
-                System.out.println("음수는 출금할 수 없습니다.");
-            } else if (money > balance) {
+            if (money > balance) {
                 String allWithdraw = CommonUtil.scanValue("잔고가 부족합니다. 금액전체를 출금할까요?(Y/N)");
                 if ("Y".equalsIgnoreCase(allWithdraw)) {
-                    System.out.println(this.balance + "원 출금합니다.");
+                    System.out.print(this.balance + "원 출금합니다.\t");
                     this.balance = 0;
                 }
             } else {
-                System.out.println(money + "원 출금합니다.");
+                System.out.print(money + "원 출금합니다.\t");
                 this.balance -= money;
             }
         }
     }
 
     void showAccountInfo() {
-        System.out.println("=============================");
         System.out.printf("계좌번호 : %s  \t이름 : %s  \t잔액 : %d\t", accountNo, name, balance);
     }
 
 
-    // 멤버메서드
+
     @Override
     public String toString() {
         return "Account [accountNo=" + accountNo + ", name=" + name + ", balance=" + balance + "]";
@@ -88,9 +73,7 @@ abstract public class Account implements Serializable {
 
     @Override
     public int hashCode() {
-        // int returnCode = Objects.hash(this.heroName, this.name, this.weapon);
         int returnCode1 = Objects.hash(this.getAccountNo());
-        // System.out.println("hashCode() : "+returnCode1);
         return returnCode1;
     }
 

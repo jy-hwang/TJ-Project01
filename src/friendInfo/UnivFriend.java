@@ -4,7 +4,15 @@ package friendInfo;
 
 public class UnivFriend extends Friend {
     // 확장한 멤버변수로 전공과목을 표현
-    String major;
+    private String major;
+    
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
     // 생성자와 멤버메서드 모두 HighFriend클래스와 동일하게 정의됨.
     public UnivFriend(String name, String phone, String addr, String major) {
@@ -23,6 +31,6 @@ public class UnivFriend extends Friend {
     public void showBasicInfo() {
         System.out.println("==대학친구==");
         System.out.println("전공 : " + major);
-        System.out.println("전화번호 : " + phone);
+        System.out.println("전화번호 : " + super.getPhone());
     }
 }
