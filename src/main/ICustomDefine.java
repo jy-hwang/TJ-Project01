@@ -15,14 +15,16 @@ public interface ICustomDefine {
      * 계좌관리
      * 계좌개설 1, 입금 2, 출금 3, 계좌정보조회 4, 저장옵션 5, 이름수정 6, 계좌간이체 7, 상위메뉴로 8 
      */
-    int MAKE_ACCOUNT = 1, DEPOSIT = 2, WITHDRAW = 3, INQUIRE = 4, SAVE_OPTION = 5, MODIFY_NAME = 6,
+    int MAKE_ACCOUNT = 1, DEPOSIT = 2, WITHDRAW = 3, INQUIRE = 4, SAVE_OPTION = 5, MODIFY_ACCOUNT = 6,
             TRANSFER = 7, TO_THE_TOP_MENU = 8;
 
+    
     /*
+     * 계좌개설시 보통계좌 1 , 신용신뢰계좌 2
      * 계좌개설시 신용신뢰계좌 등급
      * A : 7 , B : 4 , C: 2
      */
-    int A_RATE = 7, B_RATE = 4, C_RATE = 2;
+    int NORMAL_ACCOUNT = 1, HIGH_CREDIT_ACCOUNT = 2, A_RATE = 7, B_RATE = 4, C_RATE = 2;
 
     /*
      * 주소록 관리

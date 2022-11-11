@@ -41,7 +41,7 @@ public class DeleteShop extends IConnectImpl {
 
             // 아웃파라미터가 문자형이므로 getString() 으로 출력한다.
             System.out.println("삭제프로시저 실행결과 :");
-            System.out.print(cs.getString(2) + "건이 삭제되었습니다.");
+            System.out.print(cs.getString(2) + "건이 삭제되었습니다.\n");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

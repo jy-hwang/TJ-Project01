@@ -190,13 +190,13 @@ public class FriendInfoHandler {
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("불러올 파일이 없습니다.");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("불러올 클래스가 발견되지 않았습니다.");
         } catch (EOFException e) {
             System.out.println("파일 끝");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("입출력에 오류가 발생했습니다.");
         }
 
         System.out.println("친구 정보가 복원되었습니다.");

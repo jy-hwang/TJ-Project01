@@ -11,17 +11,23 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.HashSet;
 import commonUtil.CommonUtil;
+import friendInfo.HighFriend;
+import friendInfo.UnivFriend;
 import main.ICustomDefine;
 
 public class AccountManager {
-
     // 컨트롤 클래스로 프로그램의 전반적인 기능 구현하기
+
+    // 멤버변수
     private HashSet<Account> accHashSet;
 
+    // 생성자
     public AccountManager() {
         accHashSet = new HashSet<>();
     }
 
+
+    // 메뉴보기
     void showMenu() {
         System.out.println("========================= 계 좌 관 리 =================================");
         System.out.printf("1. 계좌개설 \t 2. 입금 \t 3. 출금 \t 4. 계좌정보출력 %n");
@@ -43,9 +49,9 @@ public class AccountManager {
 
         Account acc = null;
 
-        if (accountKind == 1) {
+        if (accountKind == ICustomDefine.NORMAL_ACCOUNT) {
             acc = new NormalAccount(accNo, name, balance, interest);
-        } else {
+        } else if (accountKind == ICustomDefine.HIGH_CREDIT_ACCOUNT) {
             creditRating = CommonUtil.scanValue("신용등급(A,B,C 중)");
             acc = new HighCreditAccount(accNo, name, balance, interest, creditRating);
         }
@@ -65,11 +71,10 @@ public class AccountManager {
                 return;
             }
         }
-        System.out.println("계좌개설되었습니다.");
         System.out.println("=======================================================================");
-        System.out.println("개설된 계좌정보 :" + acc.toString());
+        System.out.println("개설된 계좌정보는 다음과 같습니다.");
+        System.out.println(acc.toString());
         System.out.println("=======================================================================");
-        System.out.println();
     }
 
     // 입금하기
@@ -145,9 +150,9 @@ public class AccountManager {
         }
     }
 
-    // 계좌 이름 수정
+    // 계좌 정보 수정
     void modifyName() {
-        System.out.println("========================= 이 름 수 정 =================================");
+        System.out.println("========================= 정 보 수 정 =================================");
         String tmpNo = CommonUtil.scanValue("수정할 계좌번호");
 
         String beforeName = "";
@@ -161,15 +166,34 @@ public class AccountManager {
                 if (!afterName.isEmpty()) {
                     ac.setName(afterName);
                     count++;
-                }else{
+                } else {
                     afterName = beforeName;
+                }
+
+                if (ac instanceof NormalAccount) {
+                    int tempRate = CommonUtil.scanInt("변경할 이자");
+                    if (tempRate > 0) {
+                        ((NormalAccount) ac).setInterest(tempRate);
+                        count++;
+                    }
+                } else if (ac instanceof HighCreditAccount) {
+                    int tempRate = CommonUtil.scanInt("변경할 이자");
+                    if (tempRate > 0) {
+                        ((HighCreditAccount) ac).setInterest(tempRate);
+                        count++;
+                    }
+                    String tmpStr = CommonUtil.scanValue("신용등급");
+                    if (!tmpStr.isEmpty()) {
+                        ((HighCreditAccount) ac).setCreditRating(tmpStr);
+                        count++;
+                    }
                 }
             }
         }
         if (0 == count) {
-            System.out.println("계좌번호가 없거나 이름이 변경되지 않았습니다.");
+            System.out.println("계좌번호가 없거나 정보가 변경되지 않았습니다.");
         } else {
-            System.out.printf("수정 후 이름 : %s\t 으로 변경 되었습니다.%n", afterName);
+            System.out.println("정보가 변경되었습니다.");
         }
     }
 
@@ -190,7 +214,7 @@ public class AccountManager {
         boolean isFind1 = false, isFind2 = false;
 
         for (Account ac : accHashSet) {
-            System.out.println(withdrawNo.equals(ac.getAccountNo()));
+            // System.out.println(withdrawNo.equals(ac.getAccountNo()));
             if (withdrawNo.equals(ac.getAccountNo()) && (transferMoney <= ac.getBalance())) {
                 isFind1 = true;
                 break;
@@ -235,9 +259,7 @@ public class AccountManager {
 
     // 저장옵션
     void saveOption(AutoSaver auto) {
-
-        System.out.println("스레드 상태 :: " + auto.getState());
-        System.out.println("=======저장옵션========");
+        System.out.println("=================== 저 장 옵 션 =========================");
         System.out.printf("1. 자동저장 On \t 2. 자동저장 Off%n");
 
         int temp = CommonUtil.scanInt("저장옵션을 ");
@@ -287,9 +309,9 @@ public class AccountManager {
             out.close();
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("파일을 찾을 수 없습니다.");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("입력 오류가 발생했습니다.");
         }
         System.out.println("계좌 정보가 저장되었습니다.");
     }
@@ -306,13 +328,13 @@ public class AccountManager {
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("불러올 파일이 없습니다.");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("클래스를 찾을 수 없습니다.");
         } catch (EOFException e) {
-            System.out.println("파일 끝");
+            System.out.println("파일의 끝까지 불러왔습니다.");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("입출력오류가 발생했습니다.");
         }
 
         System.out.println("계좌 정보가 복원되었습니다.");

@@ -15,7 +15,7 @@ public class ShopMain {
         boolean  isTrue = true; 
         while (isTrue) {
             sm.showMenu();
-            int menuSelect = CommonUtil.scanInt("메뉴를 입력하세요");
+            int menuSelect = CommonUtil.scanInt("메뉴");
 
             switch (menuSelect) {
 

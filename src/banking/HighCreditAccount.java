@@ -4,12 +4,28 @@ import main.ICustomDefine;
 
 public class HighCreditAccount extends Account {
 
-    String creditRating;
-    int interest;
+    private String creditRating;
+    private int interest;
 
     public HighCreditAccount(String accountNo, String name, int balance, int interest, String creditString) {
         super(accountNo, name, balance);
         this.creditRating = (creditString.toUpperCase());
+        this.interest = interest;
+    }
+
+    public String getCreditRating() {
+        return creditRating;
+    }
+
+    public int getInterest() {
+        return interest;
+    }
+
+    public void setCreditRating(String creditRating) {
+        this.creditRating = creditRating;
+    }
+
+    public void setInterest(int interest) {
         this.interest = interest;
     }
 
@@ -40,7 +56,7 @@ public class HighCreditAccount extends Account {
     @Override
     void showAccountInfo() {
         super.showAccountInfo();
-        System.out.printf(" 기본이자 : %d\t 신용등급 : %s%n ", this.interest, this.creditRating);
+        System.out.printf("기본이자 : %d\t 신용등급 : %s%n", this.interest, this.creditRating);
     }
 
     @Override

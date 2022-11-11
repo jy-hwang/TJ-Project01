@@ -4,13 +4,21 @@ import main.ICustomDefine;
 
 public class NormalAccount extends Account{
 
-    int interest;
+    private int interest;
     
     public NormalAccount(String accountNo, String name, int balance, int interest) {
         super(accountNo, name, balance);
         this.interest = interest;
     }
     
+    public int getInterest() {
+        return interest;
+    }
+
+    public void setInterest(int interest) {
+        this.interest = interest;
+    }
+
     @Override
     public void setBalance(int tempNum, int money) {
         //super.setBalance(tempNum, money);
@@ -25,7 +33,7 @@ public class NormalAccount extends Account{
     @Override
     void showAccountInfo() {
      super.showAccountInfo();
-     System.out.printf(" 기본이자 : %d%n",this.interest);
+     System.out.printf("기본이자 : %d%n",this.interest);
     }
 
     @Override

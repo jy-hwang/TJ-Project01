@@ -42,7 +42,7 @@ public class BankingSystemMain {
                         case ICustomDefine.SAVE_OPTION:
                             am.saveOption(as);
                             break;
-                        case ICustomDefine.MODIFY_NAME:
+                        case ICustomDefine.MODIFY_ACCOUNT:
                             am.modifyName();
                             break;
                         case ICustomDefine.TRANSFER:

@@ -43,7 +43,7 @@ Out파라미터 : 레코드 수정 결과(1 혹은 0)
 
             // 아웃파라미터가 문자형이므로 getString() 으로 출력한다.
             System.out.println("수정프로시저 실행결과 :");
-            System.out.print(cs.getString(5) + "행이 수정되었습니다.");
+            System.out.print(cs.getString(5) + "행이 수정되었습니다.\n");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
