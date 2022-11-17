@@ -38,4 +38,14 @@ public interface ICustomDefine {
     
     //자동저장
     int AUTOSAVE_ON = 1, AUTOSAVE_OFF =2;
+    
+    /*
+     * 상품관리
+     * 조회하기 1, 상품추가 2 , 상품수정 3, 상품삭제 4, 상위메뉴로 8
+     */
+    int SHOP_SELECT = 1 , SHOP_INSERT = 2 , SHOP_UPDATE = 3, SHOP_DELETE = 4;
+    
+    // 전체상품조회하기 
+    int SHOP_SELECT_ALL = 1, SHOP_SELECT_LIKE = 2;
+    
 }

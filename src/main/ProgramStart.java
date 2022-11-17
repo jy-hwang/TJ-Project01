@@ -38,7 +38,7 @@ public class ProgramStart {
                     break;
                 case ICustomDefine.GAME:
                     System.out.println("=========================게 임 ================================");
-                    int gameTempNum = CommonUtil.scanInt("1. UpAndDown게임 \t 2. 3x3게임 \t 8. 돌아가기");
+                    int gameTempNum = CommonUtil.scanInt("1. UpAndDown게임 \t 2. 3x3게임 \t 8. 상위메뉴로");
                     switch (gameTempNum) {
                         case ICustomDefine.UPANDDOWN:
                             upndown.upDownGame();

@@ -67,6 +67,14 @@ public class QuUpDownGame_jy {
                     System.out.printf("%d ~ %d 사이의 정수", min, max);
                     try {
                         input = CommonUtil.scanInt("");
+                        // 4. 사용자가 숫자를 입력했을때 컴퓨터는 높은지 / 낮은지 알려준다.
+                        if(input >= 1 && input <= 100 ){
+                            recognizeNumber(input, answer);
+                        }else{
+                            System.out.println("1~100 을 벗어나는 수를 입력했습니다.");
+                            count--;
+                            continue; 
+                        }
                     } catch (InputMismatchException e) {
                         System.out.println("잘못입력했습니다.");
                         // 8.무한루프에 빠지게 된다면 scan.nextLine()을 활용하여 버퍼에 남아있는 Enter키를 제거해주도록 하자.
@@ -76,9 +84,6 @@ public class QuUpDownGame_jy {
                         // 반복문의 처음으로 돌아가게 continue
                         continue;
                     }
-                    // 4. 사용자가 숫자를 입력했을때 컴퓨터는 높은지 / 낮은지 알려준다.
-                    recognizeNumber(input, answer);
-
                     QuUpDownGame_jy.count--;
                 } else if (count <= 0) {
                     // 6. 성공 /실패 후 계속 할 것인지 물어보고 1이면 게임 재시작, 0이면 프로그램을 종료한다.
@@ -97,6 +102,8 @@ public class QuUpDownGame_jy {
                             isContinue = true;
                             isGame = true;
                             count = 7;
+                            min = 1;
+                            max =100;
                             break;
                         case 0:
                             isContinue = false;

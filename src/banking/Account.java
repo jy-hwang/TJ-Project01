@@ -50,12 +50,19 @@ abstract public class Account implements Serializable {
             if (money > balance) {
                 String allWithdraw = CommonUtil.scanValue("잔고가 부족합니다. 금액전체를 출금할까요?(Y/N)");
                 if ("Y".equalsIgnoreCase(allWithdraw)) {
-                    System.out.print(this.balance + "원 출금합니다.\t");
+                    System.out.printf("금액 전체 " + this.balance + "원 출금합니다.\t\n");
                     this.balance = 0;
+                } else if ("N".equalsIgnoreCase(allWithdraw)) {
+                    System.out.println("출금처리 취소되었습니다.");
+                    return;
+                }else{
+                    System.out.println("잘못된 입력입니다.");
+                    return;
                 }
             } else {
                 System.out.print(money + "원 출금합니다.\t");
                 this.balance -= money;
+                System.out.println("출금완료되었습니다. 출금 후 잔액은 " + this.balance + " 원 입니다.");
             }
         }
     }

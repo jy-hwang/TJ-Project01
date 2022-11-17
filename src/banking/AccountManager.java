@@ -30,8 +30,8 @@ public class AccountManager {
     // 메뉴보기
     void showMenu() {
         System.out.println("========================= 계 좌 관 리 =================================");
-        System.out.printf("1. 계좌개설 \t 2. 입금 \t 3. 출금 \t 4. 계좌정보출력 %n");
-        System.out.printf("5. 저장옵션\t 6. 이름수정 \t 7. 계좌간이체 \t 8. 상위메뉴로 %n");
+        System.out.printf("1. 계좌개설 \t 2. 입금 \t\t3. 출금 \t 4. 계좌정보출력 %n");
+        System.out.printf("5. 저장옵션\t 6. 계좌정보수정\t7. 계좌간이체 \t 8. 상위메뉴로 %n");
         System.out.println("=======================================================================");
     }
 
@@ -136,8 +136,6 @@ public class AccountManager {
 
         if (count == 0) {
             System.out.println("일치하는 계좌가 없어 출금하지 못했습니다.");
-        } else {
-            System.out.println("출금완료되었습니다. 출금 후 잔액은 " + balance + " 원 입니다.");
         }
 
     }
